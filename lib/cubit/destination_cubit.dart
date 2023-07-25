@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:project/models/destinations_models.dart';
 import 'package:project/services/destinations_services.dart';
@@ -13,7 +13,7 @@ class DestinationCubit extends Cubit<DestinationState> {
       emit(DestinationLoading());
       List<DestinationsModels> destination =
           await DestinationsServices().fetchDestination();
-      emit(DestinationSucces(destination));
+      emit(DestinationSucces(destination)); 
     } catch (e) {
       emit(DestinationFailed(e.toString()));
     }

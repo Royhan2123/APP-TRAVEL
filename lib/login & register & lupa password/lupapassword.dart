@@ -4,9 +4,9 @@ class Lupapassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return const SafeArea(child: Scaffold(
       body: Column(
-        children:const [
+        children: [
           Text("Ini halaman password")
         ],
       ),

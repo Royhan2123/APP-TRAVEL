@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/Splashscreen2.dart';
 import 'package:project/cubit/auth_cubit.dart';
-import 'package:project/login%20&%20register%20&%20lupa%20password/login.dart';
 import 'package:project/pages/main_page.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashscreenState extends State<Splashscreen> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const Login(),
+              builder: (context) => const Splashscreen2(),
             ),
             (route) => false);
       } else {
@@ -46,8 +46,8 @@ class _SplashscreenState extends State<Splashscreen> {
         children: [
           Center(
             child: Container(
-              width: 700,
-              height: 700,
+              width: 200,
+              height: 200,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/pesawat.png'))),

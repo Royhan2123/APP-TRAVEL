@@ -1,66 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/cubit/seat_cubit.dart';
 import 'package:project/shared/theme.dart';
 
 class SeatItems extends StatelessWidget {
-  const SeatItems({super.key, required this.status});
-
-  final int status;
+  const SeatItems({
+    super.key,
+    required this.id,
+    this.isAvalaible = true,
+  });
+  final String id;
+  final bool isAvalaible;
   @override
   Widget build(BuildContext context) {
+    bool isSelected = context.watch<SeatCubit>().isSelected(id);
     backgroundColor() {
-      switch (status) {
-        case 0:
-          return kAvalaibleColor;
-        case 1:
+      if (!isAvalaible) {
+        return kUnavailableColor;
+      } else {
+        if (isSelected) {
           return kPrimary;
-        case 2:
-          return kUnavailableColor;
-        default:
-          return kUnavailableColor;
+        } else {
+          return kAvalaibleColor;
+        }
       }
     }
 
     borderColor() {
-      switch (status) {
-        case 0:
-          return kPrimary;
-        case 1:
-          return kPrimary;
-        case 2:
-          return kUnavailableColor;
-        default:
-          return kUnavailableColor;
+      if (!isAvalaible) {
+        return kUnavailableColor;
+      } else {
+        return kPrimary;
       }
     }
 
     child() {
-      switch (status) {
-        case 0:
-          return const SizedBox();
-        case 1:
-          return const Center(
-            child: Text(
-              'You',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.bold),
-            ),
-          );
-        case 2:
-          return const SizedBox();
-        default:
-          return const SizedBox();
+      if (isSelected) {
+        return const Center(
+          child: Text(
+            'You',
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.bold),
+          ),
+        );
+      } else {
+        return const SizedBox();
       }
     }
 
-    return Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: backgroundColor(),
-            border: Border.all(width: 2, color: borderColor())),
-        child: child());
+    return InkWell(
+      onTap: () {
+        if (isAvalaible) {
+          context.read<SeatCubit>().selected(id);
+        }
+      },
+      child: Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: backgroundColor(),
+              border: Border.all(width: 2, color: borderColor())),
+          child: child()),
+    );
   }
 }

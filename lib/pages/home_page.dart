@@ -56,15 +56,14 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.grey,
                               fontFamily: "Poppins"),
                         ),
-                        const SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage("assets/images/royhan.jpg"),
-                          ),
-                        ),
                       ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/royhan.jpg"),
                     ),
                   ),
                 ],

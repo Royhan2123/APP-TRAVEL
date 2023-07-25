@@ -227,7 +227,7 @@ class Detailpage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ChoosePage()));
+                                builder: (context) =>  ChoosePage(destinations)));
                       },
                       child: const Text(
                         'Book Now',

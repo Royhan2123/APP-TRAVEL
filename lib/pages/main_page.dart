@@ -28,9 +28,9 @@ class _MainpageState extends State<Mainpage> {
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
+            children:  [
               CostumBottomNavigationsItem(
                 imageurl: 'assets/images/home.png',
                 index: 0,
