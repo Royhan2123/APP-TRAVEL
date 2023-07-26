@@ -43,7 +43,7 @@ class _MainpageState extends State<Mainpage> {
                 imageurl: "assets/images/paid.png",
                 index: 2,
               ),
-              CostumBottomNavigationsItem(
+              CostumBottomNavigationsItem(  
                 imageurl: "assets/images/setting.png",
                 index: 3,
               ),
