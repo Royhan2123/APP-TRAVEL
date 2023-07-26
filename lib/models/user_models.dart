@@ -7,15 +7,16 @@ class UserModel extends Equatable {
   final String name;
   final String konfirmpassword;
   final int balance;
-  
+
   const UserModel(
       {required this.id,
       required this.email,
       required this.name,
       required this.password,
       required this.konfirmpassword,
-      this.balance = 0});
+      this.balance = 148000000});
 
   @override
-  List<Object?> get props => [id, email,name, balance,password,konfirmpassword];
+  List<Object?> get props =>
+      [id, email, name, balance, password, konfirmpassword];
 }

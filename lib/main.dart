@@ -5,6 +5,7 @@ import 'package:project/cubit/auth_cubit.dart';
 import 'package:project/cubit/destination_cubit.dart';
 import 'package:project/cubit/pagecubits_cubit.dart';
 import 'package:project/cubit/seat_cubit.dart';
+import 'package:project/cubit/transaksi_cubit.dart';
 import 'splashscreen.dart';
 
 void main() async {
@@ -24,6 +25,7 @@ class Myapp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => DestinationCubit()),
         BlocProvider(create: (context) => SeatCubit()),
+        BlocProvider(create: (context) => TransaksiCubit()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

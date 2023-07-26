@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/cubit/pagecubits_cubit.dart';
+import 'package:project/shared/theme.dart';
 
 class CostumBottomNavigationsItem extends StatelessWidget {
   const CostumBottomNavigationsItem(
@@ -24,14 +25,12 @@ class CostumBottomNavigationsItem extends StatelessWidget {
           Image.asset(imageurl,
               width: 25,
               height: 25,
-              color: currentindext == index ? Colors.lightBlue : Colors.grey),
+              color: currentindext == index ? kPrimary : Colors.grey),
           Container(
             width: 25,
             height: 3,
             decoration: BoxDecoration(
-              color: currentindext == index
-                  ? Colors.lightBlue
-                  : Colors.transparent,
+              color: currentindext == index ? kPrimary   : Colors.transparent,
               borderRadius: BorderRadius.circular(18),
             ),
           ),

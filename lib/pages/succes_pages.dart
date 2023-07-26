@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/cubit/pagecubits_cubit.dart';
 import 'package:project/pages/main_page.dart';
 import 'package:project/shared/theme.dart';
 
@@ -56,10 +58,9 @@ class _SuccesPagesState extends State<SuccesPages> {
                 minimumSize: const Size(300, 40),
               ),
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Mainpage()),
-                    (route) => false);
+                context.read<PagecubitsCubit>().setpage(1);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Mainpage()));
               },
               child: const Text(
                 "My Booking",

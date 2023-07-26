@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:project/cubit/auth_cubit.dart';
 import 'package:project/pages/main_page.dart';
 
@@ -111,13 +112,17 @@ class _BonusState extends State<Bonus> {
                                 color: Colors.white),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 8.0),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
-                            "IDR 148.000.000",
-                            style: TextStyle(
+                            NumberFormat.currency(
+                                    locale: "id",
+                                    symbol: "IDR ",
+                                    decimalDigits: 0)
+                                .format(state.user.balance),
+                            style: const TextStyle(
                                 fontFamily: "Poppins",
-                                fontSize: 25,
+                                fontSize: 20,
                                 color: Colors.white),
                           ),
                         ),

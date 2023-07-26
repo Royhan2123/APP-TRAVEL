@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:project/cubit/auth_cubit.dart';
+import 'package:project/cubit/transaksi_cubit.dart';
 import 'package:project/models/transaksi_models.dart';
 import 'package:project/pages/booking_detail_item.dart';
 import 'package:project/pages/succes_pages.dart';
@@ -287,27 +288,47 @@ class CheckoutPages extends StatelessWidget {
                   Container(
                     alignment: Alignment.bottomCenter,
                     margin: const EdgeInsets.only(top: 50),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(350, 50),
-                            backgroundColor: kPrimary,
-                            shadowColor: Colors.black,
-                            foregroundColor: Colors.blue,
-                            animationDuration: const Duration(seconds: 2),
-                            shape: const StadiumBorder()),
-                        onPressed: () {
+                    child: BlocConsumer<TransaksiCubit, TransaksiState>(
+                      listener: (context, state) {
+                        if (state is TransaksiSucces) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const SuccesPages()));
-                        },
-                        child: const Text(
-                          "Pay Now",
-                          style: TextStyle(
-                              fontFamily: "Poppins",
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        )),
+                        } else if (state is TransaksiFailed) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text(state.error)));
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is TransaksiLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(350, 50),
+                                backgroundColor: kPrimary,
+                                shadowColor: Colors.black,
+                                foregroundColor: Colors.blue,
+                                animationDuration: const Duration(seconds: 2),
+                                shape: const StadiumBorder()),
+                            onPressed: () {
+                              context
+                                  .read<TransaksiCubit>()
+                                  .fetchTransaksi(transaksi);
+                            },
+                            child: const Text(
+                              "Pay Now",
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ));
+                      },
+                    ),
                   ),
                   Container(
                     alignment: Alignment.center,
